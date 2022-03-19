@@ -34,4 +34,24 @@ public class AuthorDaoImp implements AuthorDao {
             return lista.get(0);
 
     }
+
+    @Override
+    public void deleteAuthor(Long user_name) {
+        Author author = entityManager.find(Author.class, user_name);
+        entityManager.remove(author);
+    }
+
+    @Override
+    public void addAuthor(Author author) {
+        entityManager.merge(author);
+    }
+
+    @Override
+    public Author updateAuthor(Author author) {
+        Author authorToModify = entityManager.find(Author.class, author.getUser_name());
+        entityManager.detach(authorToModify);
+        authorToModify = author;
+        return entityManager.merge(authorToModify);
+
+    }
 }
