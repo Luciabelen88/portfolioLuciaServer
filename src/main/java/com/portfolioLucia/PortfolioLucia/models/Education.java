@@ -42,5 +42,9 @@ public class Education {
     @Setter
     @Column(name = "author")
     private String author;
+    @Getter
+    @Setter
+    @Column(name = "img_deletehash")
+    private String education_Img_deletehash;
 
 }

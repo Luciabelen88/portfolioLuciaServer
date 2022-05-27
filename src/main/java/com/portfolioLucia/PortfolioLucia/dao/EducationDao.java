@@ -7,9 +7,13 @@ import java.util.List;
 public interface EducationDao {
     List<Education> getEducation();
 
-    void deleteEducation(Long education_id);
+    void deleteEducation(Long id);
 
-    void addEducation(Education education);
+    Education getById(Long id);
 
-    Education updateEducation(Education education);
+    Long addEducation(Education education);
+
+    Long updateEducation(Education education);
+
+
 }

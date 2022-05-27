@@ -5,6 +5,9 @@ import com.portfolioLucia.PortfolioLucia.models.Author;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -12,30 +15,32 @@ public class AuthorController {
     @Autowired
     private AuthorDao authorDao;
 
+    @Autowired
+    EntityManager entityManager;
+
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "author")
+    @RequestMapping(value="author", method = RequestMethod.GET)
     public List<Author> getAuthor() {
-        return authorDao.getAuthor();
-
+        List<Author> authorProfile = new ArrayList<>();
+        authorProfile.addAll(authorDao.getAuthor());
+        authorProfile.get(0).setPassword("");
+        return authorProfile;
     }
 
+    @Transactional
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value= "author/{user_name}", method = RequestMethod.DELETE)
-    public void deleteAuthor(@PathVariable Long user_name) {
-        authorDao.deleteAuthor(user_name);
-
-    }
-
-    @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value= "author", method = RequestMethod.POST)
-    public void addAuthor(@RequestBody Author author) {
-        authorDao.addAuthor(author);
-
+    @RequestMapping(value="setEncodedPassword", method = RequestMethod.PATCH)
+    public void setEncodedPassword(@RequestBody String password){
+        authorDao.setEncodedPassword(password);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value="author", method = RequestMethod.PUT)
-    public Author updateAuthor(@RequestBody Author author) {
-        return authorDao.updateAuthor(author);
+    public void updateAuthor(@RequestBody Author author) {
+        author.setPassword(authorDao.getAuthor().get(0).getPassword());
+        authorDao.updateAuthor(author);
     }
+
+
+
 }

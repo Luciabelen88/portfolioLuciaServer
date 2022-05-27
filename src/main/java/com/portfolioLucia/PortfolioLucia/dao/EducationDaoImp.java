@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Iterator;
 import java.util.List;
 
 @Repository
@@ -21,22 +22,36 @@ public class EducationDaoImp implements EducationDao {
     }
 
     @Override
-    public void deleteEducation(Long education_id) {
-        Education education = entityManager.find(Education.class, education_id);
+    public Education getById(Long id) {
+        Iterator<Education> iterator = getEducation().iterator();
+        while (iterator.hasNext()) {
+            Education education = iterator.next();
+            if (education.getEducation_id().equals(id)) {
+                return education;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void deleteEducation(Long id) {
+        Education education = entityManager.find(Education.class, id);
         entityManager.remove(education);
     }
 
     @Override
-    public void addEducation(Education education) {
-        entityManager.merge(education);
+    public Long addEducation(Education education) {
+        Education managedEntity = entityManager.merge(education);
+        return managedEntity.getEducation_id();
     }
 
     @Override
-    public Education updateEducation(Education education) {
+    public Long updateEducation(Education education) {
         Education educationToModify = entityManager.find(Education.class, education.getEducation_id());
         entityManager.detach(educationToModify);
         educationToModify = education;
-        return entityManager.merge(educationToModify);
+        entityManager.merge(educationToModify);
+        return  educationToModify.getEducation_id();
 
     }
 

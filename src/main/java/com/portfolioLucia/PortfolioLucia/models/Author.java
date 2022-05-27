@@ -15,7 +15,7 @@ public class Author {
     @Setter
     @Id
     @Column(name = "user_name")
-    private String user_name;
+    private String username;
     @Getter
     @Setter
     @Column(name = "password")
@@ -60,5 +60,11 @@ public class Author {
     @Setter
     @Column(name = "city")
     private String city;
+    @Getter @Setter @Column(name = "deletehash_profile")
+    private String deletehash_profile;
+
+    @Getter @Setter @Column(name = "deletehash_background")
+    private String deletehash_background;
+
 
 }

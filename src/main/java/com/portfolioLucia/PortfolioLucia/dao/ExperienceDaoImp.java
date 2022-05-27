@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Iterator;
 import java.util.List;
 
 @Repository
@@ -20,16 +21,28 @@ public class ExperienceDaoImp implements ExperienceDao {
         String query = "FROM Experience";
         return entityManager.createQuery(query).getResultList();
     }
+    @Override
+    public Experience getById(Long id) {
+        Iterator<Experience> iterator = getExperience().iterator();
+        while (iterator.hasNext()) {
+            Experience experience = iterator.next();
+            if (experience.getExperience_id().equals(id)) {
+                return experience;
+            }
+        }
+        return null;
+    }
 
     @Override
-    public void deleteExperience(Long experience_id) {
-        Experience experience = entityManager.find(Experience.class, experience_id);
+    public void deleteExperience(Long id) {
+        Experience experience = entityManager.find(Experience.class, id);
         entityManager.remove(experience);
     }
 
     @Override
-    public void addExperience(Experience experience) {
-        entityManager.merge(experience);
+    public Long addExperience(Experience experience) {
+       Experience managedEntity = entityManager.merge(experience);
+       return managedEntity.getExperience_id();
     }
 
     @Override

@@ -5,9 +5,10 @@ import java.util.List;
 public interface ExperienceDao {
     List<Experience> getExperience();
 
-    void deleteExperience(Long experience_id);
+    void deleteExperience(Long id);
+    Experience getById(Long id);
 
-    void addExperience(Experience experience);
+    Long addExperience(Experience experience);
 
     Experience updateExperience(Experience experience);
 }

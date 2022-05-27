@@ -33,7 +33,7 @@ public class ProjectsController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value="projects", method = RequestMethod.PUT)
-    public Projects updateProject(@RequestBody Projects projects) {
+    public Long updateProject(@RequestBody Projects projects) {
         return projectsDao.updateProject(projects);
     }
 }

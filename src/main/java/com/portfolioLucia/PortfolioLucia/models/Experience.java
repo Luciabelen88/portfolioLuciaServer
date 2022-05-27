@@ -42,4 +42,8 @@ public class Experience {
     @Setter
     @Column(name = "author")
     private String author;
+    @Getter
+    @Setter
+    @Column(name = "img_deletehash")
+    private String experience_Img_deletehash;
 }

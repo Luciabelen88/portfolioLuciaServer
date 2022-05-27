@@ -5,6 +5,7 @@ import com.portfolioLucia.PortfolioLucia.models.Education;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
 
 @RestController
@@ -34,7 +35,7 @@ public class EducationController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value="education", method = RequestMethod.PUT)
-    public Education updateEducation(@RequestBody Education education) {
+    public Long updateEducation(@RequestBody Education education) {
         return educationDao.updateEducation(education);
     }
 

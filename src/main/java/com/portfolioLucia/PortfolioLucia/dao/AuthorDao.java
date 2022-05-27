@@ -6,11 +6,7 @@ import java.util.List;
 
 public interface AuthorDao {
     List<Author> getAuthor();
-   Author getAuthorByCredentials(Author author);
+    void updateAuthor(Author author);
 
-    void deleteAuthor(Long user_name);
-
-    void addAuthor(Author author);
-
-    Author updateAuthor(Author author);
+    void setEncodedPassword(String password);
 }
