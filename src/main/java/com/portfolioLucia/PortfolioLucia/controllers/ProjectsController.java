@@ -1,6 +1,8 @@
 package com.portfolioLucia.PortfolioLucia.controllers;
 
 import com.portfolioLucia.PortfolioLucia.dao.ProjectsDao;
+import com.portfolioLucia.PortfolioLucia.models.Education;
+import com.portfolioLucia.PortfolioLucia.models.Experience;
 import com.portfolioLucia.PortfolioLucia.models.Projects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,29 +13,31 @@ import java.util.List;
 public class ProjectsController {
     @Autowired
     private ProjectsDao projectsDao;
-    @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "projects")
+    @CrossOrigin(origins = "https://portfoliolucia-fa171.web.app")
+    @RequestMapping(value = "projects", method = RequestMethod.GET)
     public List<Projects> getProjects() {
         return projectsDao.getProjects();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value= "projects/{project_id}", method = RequestMethod.DELETE)
-    public void deleteProject(@PathVariable Long project_id) {
-        projectsDao.deleteProject(project_id);
+    @CrossOrigin(origins = "https://portfoliolucia-fa171.web.app")
+    @RequestMapping(value= "projects/{id}", method = RequestMethod.DELETE)
+    public void deleteProject(@PathVariable Long id) {
+        projectsDao.deleteProject(id);
 
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://portfoliolucia-fa171.web.app")
     @RequestMapping(value= "projects", method = RequestMethod.POST)
-    public void addProject(@RequestBody Projects projects) {
-        projectsDao.addProject(projects);
+    public Long addProject(@RequestBody Projects projects) {
+        return projectsDao.addProject(projects);
 
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://portfoliolucia-fa171.web.app")
     @RequestMapping(value="projects", method = RequestMethod.PUT)
-    public Long updateProject(@RequestBody Projects projects) {
+    public Projects updateProject(@RequestBody Projects projects) {
+
         return projectsDao.updateProject(projects);
     }
+
 }

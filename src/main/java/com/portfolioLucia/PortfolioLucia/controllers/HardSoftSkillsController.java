@@ -13,27 +13,27 @@ public class HardSoftSkillsController {
     @Autowired
     private HardSoftSkillsDao hardSoftSkillsDao;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://portfoliolucia-fa171.web.app")
     @RequestMapping(value = "hardsoftskills", method = RequestMethod.GET)
     public List<HardSoftSkills> getHardSoftSkills() {
 
         return hardSoftSkillsDao.getHardSoftSkills();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "hardsoftskills/{skills_id}", method = RequestMethod.DELETE)
-    public void getHardSoftSkills(@PathVariable Long skills_id) {
+    @CrossOrigin(origins = "https://portfoliolucia-fa171.web.app")
+    @RequestMapping(value = "hardsoftskills/{id}", method = RequestMethod.DELETE)
+    public void getHardSoftSkills(@PathVariable Long id) {
 
-        hardSoftSkillsDao.deleteHardSoftSkills(skills_id);
+        hardSoftSkillsDao.deleteHardSoftSkills(id);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://portfoliolucia-fa171.web.app")
     @RequestMapping(value = "hardsoftskills", method = RequestMethod.POST)
     public void addHardSoftSkills(@RequestBody HardSoftSkills hardSoftSkills) {
         hardSoftSkillsDao.addHardSoftSkills(hardSoftSkills);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://portfoliolucia-fa171.web.app")
     @RequestMapping(value = "hardsoftskills", method = RequestMethod.PUT)
     public HardSoftSkills updateHardSoftSkills(@RequestBody HardSoftSkills hardSoftSkills) {
         return hardSoftSkillsDao.updateHardSoftSkills(hardSoftSkills);

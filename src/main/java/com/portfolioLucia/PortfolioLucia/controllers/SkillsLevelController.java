@@ -14,7 +14,7 @@ public class SkillsLevelController {
     @Autowired
     private SkillsLevelDao skillsLevelDao;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://portfoliolucia-fa171.web.app")
     @RequestMapping(value = "skillslevel")
     public List<SkillsLevel> getSkillsLevel() {
         return skillsLevelDao.getSkillsLevel();

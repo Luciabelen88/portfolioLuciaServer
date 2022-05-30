@@ -1,5 +1,6 @@
 package com.portfolioLucia.PortfolioLucia.dao;
 
+import com.portfolioLucia.PortfolioLucia.models.Experience;
 import com.portfolioLucia.PortfolioLucia.models.Projects;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,12 +46,11 @@ public class ProjectsDaoImp implements ProjectsDao {
     }
 
     @Override
-    public Long updateProject(Projects projects) {
+    public Projects updateProject(Projects projects) {
         Projects projectToModify = entityManager.find(Projects.class, projects.getProject_id());
         entityManager.detach(projectToModify);
         projectToModify = projects;
-        entityManager.merge(projectToModify);
-        return projectToModify.getProject_id();
+        return entityManager.merge(projectToModify);
     }
 
 }

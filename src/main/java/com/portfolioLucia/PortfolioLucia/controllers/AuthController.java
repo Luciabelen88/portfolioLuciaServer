@@ -17,6 +17,7 @@ import java.util.List;
 
 @RestController
 public class AuthController {
+
     @Autowired
     private JwtUtil jwtUtil;
 
@@ -26,7 +27,7 @@ public class AuthController {
     @Autowired
     private MyUserDetailsService userDetailService;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://portfoliolucia-fa171.web.app")
     @RequestMapping(value="/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
         try {

@@ -6,10 +6,13 @@ import java.util.List;
 
 public interface ProjectsDao {
     List<Projects> getProjects();
+
     Projects getById(Long id);
+
     void deleteProject(Long id);
 
     Long addProject(Projects projects);
 
-    Long updateProject(Projects projects);
+    Projects updateProject(Projects projects);
 }
+

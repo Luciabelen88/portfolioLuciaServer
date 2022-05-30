@@ -58,7 +58,7 @@ public class FileController {
 
 
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://portfoliolucia-fa171.web.app")
     @PostMapping("uploadFile")
     public HashMap uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("typeEntity") String idEntity, @RequestParam("idEntity") String identificador) throws URISyntaxException {
 
@@ -86,7 +86,7 @@ public class FileController {
 
         if (idEntity.equals("education")) {
             Education education = educationDao.getById(Long.valueOf(fileName.toString()).longValue());
-            education.setEducation_Img_deletehash(respuesta.get("deletehash").toString());
+            education.setEducation_img_deletehash(respuesta.get("deletehash").toString());
             education.setLogo_url(respuesta.get("link").toString());
             educationDao.updateEducation(education);
 
@@ -112,7 +112,7 @@ public class FileController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:4200" )
+    @CrossOrigin(origins = "https://portfoliolucia-fa171.web.app" )
     @RequestMapping(value="deleteFile/{deletehash}", method = RequestMethod.DELETE)
     public HashMap deleteFile(@PathVariable String deletehash) throws IOException, URISyntaxException {
 

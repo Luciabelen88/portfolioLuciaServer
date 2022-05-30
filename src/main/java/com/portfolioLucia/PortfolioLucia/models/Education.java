@@ -44,7 +44,7 @@ public class Education {
     private String author;
     @Getter
     @Setter
-    @Column(name = "img_deletehash")
-    private String education_Img_deletehash;
+    @Column(name = "education_img_deletehash")
+    private String education_img_deletehash;
 
 }

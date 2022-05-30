@@ -13,27 +13,27 @@ public class EducationController {
     @Autowired
     private EducationDao educationDao;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://portfoliolucia-fa171.web.app")
     @RequestMapping(value= "education", method = RequestMethod.GET)
     public List<Education> getEducation() {
         return educationDao.getEducation();
 
     }
-    @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value= "education/{education_id}", method = RequestMethod.DELETE)
-    public void deleteEducation(@PathVariable Long education_id) {
-        educationDao.deleteEducation(education_id);
+    @CrossOrigin(origins = "https://portfoliolucia-fa171.web.app")
+    @RequestMapping(value= "education/{id}", method = RequestMethod.DELETE)
+    public void deleteEducation(@PathVariable Long id) {
+        educationDao.deleteEducation(id);
 
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://portfoliolucia-fa171.web.app")
     @RequestMapping(value= "education", method = RequestMethod.POST)
-    public void addEducation(@RequestBody Education education) {
-        educationDao.addEducation(education);
+    public Long addEducation(@RequestBody Education education) {
+        return educationDao.addEducation(education);
 
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://portfoliolucia-fa171.web.app")
     @RequestMapping(value="education", method = RequestMethod.PUT)
     public Long updateEducation(@RequestBody Education education) {
         return educationDao.updateEducation(education);

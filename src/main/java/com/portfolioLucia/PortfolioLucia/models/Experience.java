@@ -44,6 +44,6 @@ public class Experience {
     private String author;
     @Getter
     @Setter
-    @Column(name = "img_deletehash")
+    @Column(name = "experience_Img_deletehash")
     private String experience_Img_deletehash;
 }

@@ -18,7 +18,7 @@ public class AuthorController {
     @Autowired
     EntityManager entityManager;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://portfoliolucia-fa171.web.app")
     @RequestMapping(value="author", method = RequestMethod.GET)
     public List<Author> getAuthor() {
         List<Author> authorProfile = new ArrayList<>();
@@ -27,18 +27,18 @@ public class AuthorController {
         return authorProfile;
     }
 
-    @Transactional
-    @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value="setEncodedPassword", method = RequestMethod.PATCH)
-    public void setEncodedPassword(@RequestBody String password){
-        authorDao.setEncodedPassword(password);
-    }
-
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://portfoliolucia-fa171.web.app")
     @RequestMapping(value="author", method = RequestMethod.PUT)
     public void updateAuthor(@RequestBody Author author) {
         author.setPassword(authorDao.getAuthor().get(0).getPassword());
         authorDao.updateAuthor(author);
+    }
+
+    @Transactional
+    @CrossOrigin(origins = "https://portfoliolucia-fa171.web.app")
+    @RequestMapping(value="setEncodedPassword", method = RequestMethod.PATCH)
+    public void setEncodedPassword(@RequestBody String password){
+        authorDao.setEncodedPassword(password);
     }
 
 
